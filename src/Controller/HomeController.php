@@ -14,8 +14,6 @@ class HomeController extends AbstractController
     {
         $test = $doctrine->getConnection();
 
-        dd($test);
-
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'connection'      => $test

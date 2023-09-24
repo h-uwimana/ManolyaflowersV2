@@ -25,12 +25,11 @@
                         </svg>
                     </span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbar">
+                <div class="collapse navbar-collapse" id="navbar">
                     <div class="navbar-nav ">
-                        <a class="nav-link active ms-md-1 fs-5" aria-current="page" href="{{ path('home') }}">Home</a>
+                        <a class="nav-link  ms-md-1 fs-5" aria-current="page" href="{{ path('home') }}">Home</a>
                         <a class="nav-link ms-md-1 fs-5" href="{{ path('about') }}">Over Ons</a>
-                        <a class="nav-link ms-md-1 fs-5" href="#">Pricing</a>
-                        <a class="nav-link disabled ms-md-1 fs-5" aria-disabled="true">Disabled</a>
+                        <a class="nav-link ms-md-1 fs-5" href="{{ path('galerij') }}">Galerij</a>
                     </div>
                 </div>
             </div>
@@ -68,6 +67,7 @@
                         <ul class="list-unstyled">
                             <li><a href="i={{ path('home') }}">Home</a></li>
                             <li><a href="{{ path('about') }}">Overons</a></li>
+                            <li><a href="{{ path('galerij') }}">Galerij</a></li>
                             <li><a href="contact.php">Contact</a></li>
                         </ul>
                     </div>

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bezorging{% endblock %}
+
+{% block body %}
+    <div class="container-fluid px-0 row mx-0">
+        <div class=" col-12 d-grid py-md-5 py-sm-5 d-flex align-items-center ps-5 " style="background: linear-gradient(
+                rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.7)
+                ), url('{{ asset('img/rozenOverOns.png')}}') no-repeat center; background-size: cover">
+            <div class="row">
+                <h2 class="fs-1 display-1 pb-md-3 text-white fw-bolder ">
+                    Nuttige informatie over bezorging
+                </h2>
+                <p class="fs-5 fw-lighter text-white text-wrap w-md-100 col-md-4 ">
+                    Bij ons willen we je bloemenbestelling zo naadloos en plezierig mogelijk maken. Hier is alles wat je moet weten over onze bezorgmogelijkheden.
+                </p>
+            </div>
+        </div>
+        <div class=" ps-5 my-5 " style="background-color: antiquewhite">
+            <div class=" container-fluid py-5 row row-cols-sm-1 row-cols-md-3  justify-content-center ">
+                <div class="  text-center">
+                    <p class=" fs-2 mt-1 fw-bold ">Minimaal bestelbedrag</p>
+                    <p class="fs-3 fw-light">
+                        We vragen je om minimaal 15 euro te bestellen. Dit helpt ons ervoor te zorgen dat de bloemen vers en in uitstekende staat bij jou aankomen. We willen immers dat de ontvanger optimaal van de bloemen kan genieten.
+                    </p>
+                </div>
+                <div class="  text-center">
+                    <p class=" fs-2 mt-1 fw-bold ">Bezorgkosten</p>
+                    <p class="fs-3 fw-light">
+                        Voor bestellingen onder de 50 euro brengen we een bescheiden bezorgtarief van 5 euro in rekening. Dit tarief helpt ons de kosten te dekken die gepaard gaan met het leveren van je bestelling. We streven er altijd naar om een betaalbare en betrouwbare bezorgservice te bieden
+                    </p>
+                </div>
+                <div class=" text-center">
+                    <p class=" fs-2 mt-1 fw-bold ">Gratis bezorging</p>
+                    <p class="fs-3 fw-light">
+                        Hier komt het goede nieuws! Bestel je voor 50 euro of meer, dan is de bezorging helemaal gratis. Dit is onze manier om je te bedanken voor je genereuze bestelling en om je te belonen met een kosteloze bezorging. Zo kun je nog meer genieten van de prachtige bloemen die je hebt uitgekozen
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mb-3 p-0">
+        <h2 class="fs-1 fw-bold text-center mb-4 col-12 ">
+            Hoe kun je bestellen
+        </h2>
+        <div class=" ps-5 my-5 " style="background-color: antiquewhite">
+            <div class=" container-fluid py-5 row justify-content-center ">
+                <div class="col-sm-12 col-md-6 d-grid gab-0 align-items-center text-center">
+                    <p class="fs-3 fw-light">
+                        Als je wilt bestellen, kun je dat op twee eenvoudige manieren doen, elke dag tijdens onze openingstijden van 07:00 tot 19:00. Je kunt ons bellen op +31687774682 of een e-mail sturen naar [e-mailadres]. We zijn beschikbaar om je bestelling te noteren en ervoor te zorgen dat je bloemen op de gewenste manier worden bezorgd
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="container ps-5  py-4" style="background-color: #ffefea">
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-sm-12">
+                    <h2 class="fs-1 mt-3 display-1 pb-md-3 text-black fw-light ">
+                        Hier begint de bloei
+                    </h2>
+                    <p class="fs-3 fw-lighter  ">
+                        Laat uw bedrijf opbloeien en bestel onze creatieve boeket van diensten
+                    </p>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <h2 class="fs-1 mt-3 display-1 pb-md-3 text-black fw-light ">
+                        Klik of scan de code om te betalen
+                    </h2>
+                    <a href="https://www.ing.nl/de-ing/payreq?trxid=bSb73aKAhEKuJwrZPTzilUQYwJKKoKuy&flow-step=payment-request" ><img class="w-25" src="{{ asset('img/frame.png') }}"  alt="qrcode"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

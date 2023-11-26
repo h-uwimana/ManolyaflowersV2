@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="e6d5df9d-2d3b-4a77-b713-9685329cf1a4" name="@localhost Mapping">
+      <data-sources db="c3082d79-5b82-4974-8f7e-deab2c02541e" />
+      <scope>
+        <node kind="schema" qname="wp_5i3vb" />
+      </scope>
+    </mapping>
+  </component>
+</project>

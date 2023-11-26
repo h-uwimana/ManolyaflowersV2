@@ -25,9 +25,9 @@ class Categories
     /**
      * @var string|null
      *
-     * @ORM\Column(name="CategoryName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Name", type="string", length=255, nullable=true)
      */
-    private $categoryname;
+    private $name;
 
     /**
      * @var string|null
@@ -41,14 +41,14 @@ class Categories
         return $this->categoryid;
     }
 
-    public function getCategoryname(): ?string
+    public function getName(): ?string
     {
-        return $this->categoryname;
+        return $this->name;
     }
 
-    public function setCategoryname(?string $categoryname): static
+    public function setName(?string $name): static
     {
-        $this->categoryname = $categoryname;
+        $this->name = $name;
 
         return $this;
     }

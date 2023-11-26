@@ -6,21 +6,21 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Shippingmethods
+ * Paymentmethods
  *
- * @ORM\Table(name="ShippingMethods")
+ * @ORM\Table(name="PaymentMethods")
  * @ORM\Entity
  */
-class Shippingmethods
+class Paymentmethods
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="ShippingMethodID", type="integer", nullable=false)
+     * @ORM\Column(name="PaymentMethodID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $shippingmethodid;
+    private $paymentmethodid;
 
     /**
      * @var string|null
@@ -37,15 +37,15 @@ class Shippingmethods
     private $description;
 
     /**
-     * @var string|null
+     * @var bool|null
      *
-     * @ORM\Column(name="EstimatedDeliveryTime", type="string", length=50, nullable=true)
+     * @ORM\Column(name="IsActive", type="boolean", nullable=true)
      */
-    private $estimateddeliverytime;
+    private $isactive;
 
-    public function getShippingmethodid(): ?int
+    public function getPaymentmethodid(): ?int
     {
-        return $this->shippingmethodid;
+        return $this->paymentmethodid;
     }
 
     public function getMethodname(): ?string
@@ -72,14 +72,14 @@ class Shippingmethods
         return $this;
     }
 
-    public function getEstimateddeliverytime(): ?string
+    public function isIsactive(): ?bool
     {
-        return $this->estimateddeliverytime;
+        return $this->isactive;
     }
 
-    public function setEstimateddeliverytime(?string $estimateddeliverytime): static
+    public function setIsactive(?bool $isactive): static
     {
-        $this->estimateddeliverytime = $estimateddeliverytime;
+        $this->isactive = $isactive;
 
         return $this;
     }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Orders
  *
- * @ORM\Table(name="Orders", indexes={@ORM\Index(name="CustomerID", columns={"CustomerID"}), @ORM\Index(name="ShippingMethodID", columns={"ShippingMethodID"}), @ORM\Index(name="CouponID", columns={"CouponID"})})
+ * @ORM\Table(name="Orders", indexes={@ORM\Index(name="FK_Orders_Customer", columns={"CustomerID"}), @ORM\Index(name="FK_Orders_BillingAddress", columns={"BillingAddressID"}), @ORM\Index(name="FK_Orders_ShippingAddress", columns={"ShippingAddressID"})})
  * @ORM\Entity
  */
 class Orders
@@ -30,63 +30,28 @@ class Orders
     private $orderdate;
 
     /**
-     * @var \DateTime|null
+     * @var string|null
      *
-     * @ORM\Column(name="ShipDate", type="datetime", nullable=true)
+     * @ORM\Column(name="TotalAmount", type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $shipdate;
+    private $totalamount;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ShippingAddress", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Status", type="string", length=255, nullable=true)
      */
-    private $shippingaddress;
+    private $status;
 
     /**
-     * @var string|null
+     * @var \Addresses
      *
-     * @ORM\Column(name="ShippingCity", type="string", length=255, nullable=true)
-     */
-    private $shippingcity;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="ShippingPostalCode", type="string", length=10, nullable=true)
-     */
-    private $shippingpostalcode;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="ShippingCountry", type="string", length=255, nullable=true)
-     */
-    private $shippingcountry;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="Total", type="decimal", precision=10, scale=2, nullable=true)
-     */
-    private $total;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="OrderStatus", type="string", length=50, nullable=true)
-     */
-    private $orderstatus;
-
-    /**
-     * @var \Coupons
-     *
-     * @ORM\ManyToOne(targetEntity="Coupons")
+     * @ORM\ManyToOne(targetEntity="Addresses")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="CouponID", referencedColumnName="CouponID")
+     *   @ORM\JoinColumn(name="BillingAddressID", referencedColumnName="AddressID")
      * })
      */
-    private $couponid;
+    private $billingaddressid;
 
     /**
      * @var \Customers
@@ -99,14 +64,14 @@ class Orders
     private $customerid;
 
     /**
-     * @var \Shippingmethods
+     * @var \Addresses
      *
-     * @ORM\ManyToOne(targetEntity="Shippingmethods")
+     * @ORM\ManyToOne(targetEntity="Addresses")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ShippingMethodID", referencedColumnName="ShippingMethodID")
+     *   @ORM\JoinColumn(name="ShippingAddressID", referencedColumnName="AddressID")
      * })
      */
-    private $shippingmethodid;
+    private $shippingaddressid;
 
     public function getOrderid(): ?int
     {
@@ -125,98 +90,38 @@ class Orders
         return $this;
     }
 
-    public function getShipdate(): ?\DateTimeInterface
+    public function getTotalamount(): ?string
     {
-        return $this->shipdate;
+        return $this->totalamount;
     }
 
-    public function setShipdate(?\DateTimeInterface $shipdate): static
+    public function setTotalamount(?string $totalamount): static
     {
-        $this->shipdate = $shipdate;
+        $this->totalamount = $totalamount;
 
         return $this;
     }
 
-    public function getShippingaddress(): ?string
+    public function getStatus(): ?string
     {
-        return $this->shippingaddress;
+        return $this->status;
     }
 
-    public function setShippingaddress(?string $shippingaddress): static
+    public function setStatus(?string $status): static
     {
-        $this->shippingaddress = $shippingaddress;
+        $this->status = $status;
 
         return $this;
     }
 
-    public function getShippingcity(): ?string
+    public function getBillingaddressid(): ?Addresses
     {
-        return $this->shippingcity;
+        return $this->billingaddressid;
     }
 
-    public function setShippingcity(?string $shippingcity): static
+    public function setBillingaddressid(?Addresses $billingaddressid): static
     {
-        $this->shippingcity = $shippingcity;
-
-        return $this;
-    }
-
-    public function getShippingpostalcode(): ?string
-    {
-        return $this->shippingpostalcode;
-    }
-
-    public function setShippingpostalcode(?string $shippingpostalcode): static
-    {
-        $this->shippingpostalcode = $shippingpostalcode;
-
-        return $this;
-    }
-
-    public function getShippingcountry(): ?string
-    {
-        return $this->shippingcountry;
-    }
-
-    public function setShippingcountry(?string $shippingcountry): static
-    {
-        $this->shippingcountry = $shippingcountry;
-
-        return $this;
-    }
-
-    public function getTotal(): ?string
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?string $total): static
-    {
-        $this->total = $total;
-
-        return $this;
-    }
-
-    public function getOrderstatus(): ?string
-    {
-        return $this->orderstatus;
-    }
-
-    public function setOrderstatus(?string $orderstatus): static
-    {
-        $this->orderstatus = $orderstatus;
-
-        return $this;
-    }
-
-    public function getCouponid(): ?Coupons
-    {
-        return $this->couponid;
-    }
-
-    public function setCouponid(?Coupons $couponid): static
-    {
-        $this->couponid = $couponid;
+        $this->billingaddressid = $billingaddressid;
 
         return $this;
     }
@@ -233,14 +138,14 @@ class Orders
         return $this;
     }
 
-    public function getShippingmethodid(): ?Shippingmethods
+    public function getShippingaddressid(): ?Addresses
     {
-        return $this->shippingmethodid;
+        return $this->shippingaddressid;
     }
 
-    public function setShippingmethodid(?Shippingmethods $shippingmethodid): static
+    public function setShippingaddressid(?Addresses $shippingaddressid): static
     {
-        $this->shippingmethodid = $shippingmethodid;
+        $this->shippingaddressid = $shippingaddressid;
 
         return $this;
     }

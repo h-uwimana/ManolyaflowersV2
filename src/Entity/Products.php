@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Products
  *
- * @ORM\Table(name="Products", indexes={@ORM\Index(name="CategoryID", columns={"CategoryID"})})
+ * @ORM\Table(name="Products", indexes={@ORM\Index(name="FK_Products_Category", columns={"CategoryID"})})
  * @ORM\Entity
  */
 class Products
@@ -25,9 +25,9 @@ class Products
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ProductName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Name", type="string", length=255, nullable=true)
      */
-    private $productname;
+    private $name;
 
     /**
      * @var string|null
@@ -46,23 +46,16 @@ class Products
     /**
      * @var int|null
      *
-     * @ORM\Column(name="Stock", type="integer", nullable=true)
+     * @ORM\Column(name="StockQuantity", type="integer", nullable=true)
      */
-    private $stock;
+    private $stockquantity;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="ImageURL", type="string", length=255, nullable=true)
+     * @ORM\Column(name="Status", type="string", length=50, nullable=true)
      */
-    private $imageurl;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="DateAdded", type="datetime", nullable=true)
-     */
-    private $dateadded;
+    private $status;
 
     /**
      * @var \Categories
@@ -79,14 +72,14 @@ class Products
         return $this->productid;
     }
 
-    public function getProductname(): ?string
+    public function getName(): ?string
     {
-        return $this->productname;
+        return $this->name;
     }
 
-    public function setProductname(?string $productname): static
+    public function setName(?string $name): static
     {
-        $this->productname = $productname;
+        $this->name = $name;
 
         return $this;
     }
@@ -115,38 +108,26 @@ class Products
         return $this;
     }
 
-    public function getStock(): ?int
+    public function getStockquantity(): ?int
     {
-        return $this->stock;
+        return $this->stockquantity;
     }
 
-    public function setStock(?int $stock): static
+    public function setStockquantity(?int $stockquantity): static
     {
-        $this->stock = $stock;
+        $this->stockquantity = $stockquantity;
 
         return $this;
     }
 
-    public function getImageurl(): ?string
+    public function getStatus(): ?string
     {
-        return $this->imageurl;
+        return $this->status;
     }
 
-    public function setImageurl(?string $imageurl): static
+    public function setStatus(?string $status): static
     {
-        $this->imageurl = $imageurl;
-
-        return $this;
-    }
-
-    public function getDateadded(): ?\DateTimeInterface
-    {
-        return $this->dateadded;
-    }
-
-    public function setDateadded(?\DateTimeInterface $dateadded): static
-    {
-        $this->dateadded = $dateadded;
+        $this->status = $status;
 
         return $this;
     }

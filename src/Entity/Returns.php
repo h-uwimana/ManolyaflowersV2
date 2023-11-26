@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Returns
  *
- * @ORM\Table(name="Returns", indexes={@ORM\Index(name="OrderID", columns={"OrderID"}), @ORM\Index(name="ProductID", columns={"ProductID"})})
+ * @ORM\Table(name="Returns", indexes={@ORM\Index(name="FK_Returns_Order", columns={"OrderID"})})
  * @ORM\Entity
  */
 class Returns
@@ -23,18 +23,32 @@ class Returns
     private $returnid;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="Reason", type="text", length=65535, nullable=true)
-     */
-    private $reason;
-
-    /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DateReturned", type="datetime", nullable=true)
+     * @ORM\Column(name="ReturnDate", type="datetime", nullable=true)
      */
-    private $datereturned;
+    private $returndate;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="ReturnReason", type="text", length=65535, nullable=true)
+     */
+    private $returnreason;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="ReturnStatus", type="string", length=255, nullable=true)
+     */
+    private $returnstatus;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="RefundAmount", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $refundamount;
 
     /**
      * @var \Orders
@@ -46,41 +60,55 @@ class Returns
      */
     private $orderid;
 
-    /**
-     * @var \Products
-     *
-     * @ORM\ManyToOne(targetEntity="Products")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ProductID", referencedColumnName="ProductID")
-     * })
-     */
-    private $productid;
-
     public function getReturnid(): ?int
     {
         return $this->returnid;
     }
 
-    public function getReason(): ?string
+    public function getReturndate(): ?\DateTimeInterface
     {
-        return $this->reason;
+        return $this->returndate;
     }
 
-    public function setReason(?string $reason): static
+    public function setReturndate(?\DateTimeInterface $returndate): static
     {
-        $this->reason = $reason;
+        $this->returndate = $returndate;
 
         return $this;
     }
 
-    public function getDatereturned(): ?\DateTimeInterface
+    public function getReturnreason(): ?string
     {
-        return $this->datereturned;
+        return $this->returnreason;
     }
 
-    public function setDatereturned(?\DateTimeInterface $datereturned): static
+    public function setReturnreason(?string $returnreason): static
     {
-        $this->datereturned = $datereturned;
+        $this->returnreason = $returnreason;
+
+        return $this;
+    }
+
+    public function getReturnstatus(): ?string
+    {
+        return $this->returnstatus;
+    }
+
+    public function setReturnstatus(?string $returnstatus): static
+    {
+        $this->returnstatus = $returnstatus;
+
+        return $this;
+    }
+
+    public function getRefundamount(): ?string
+    {
+        return $this->refundamount;
+    }
+
+    public function setRefundamount(?string $refundamount): static
+    {
+        $this->refundamount = $refundamount;
 
         return $this;
     }
@@ -93,18 +121,6 @@ class Returns
     public function setOrderid(?Orders $orderid): static
     {
         $this->orderid = $orderid;
-
-        return $this;
-    }
-
-    public function getProductid(): ?Products
-    {
-        return $this->productid;
-    }
-
-    public function setProductid(?Products $productid): static
-    {
-        $this->productid = $productid;
 
         return $this;
     }

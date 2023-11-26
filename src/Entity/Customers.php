@@ -2,13 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Customers
  *
- * @ORM\Table(name="Customers", uniqueConstraints={@ORM\UniqueConstraint(name="Email", columns={"Email"})})
+ * @ORM\Table(name="Customers", indexes={@ORM\Index(name="FK_Customers_User", columns={"UserID"})})
  * @ORM\Entity
  */
 class Customers
@@ -25,194 +24,64 @@ class Customers
     /**
      * @var string|null
      *
-     * @ORM\Column(name="FirstName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="PreferredPaymentMethod", type="string", length=50, nullable=true)
      */
-    private $firstname;
+    private $preferredpaymentmethod;
 
     /**
-     * @var string|null
+     * @var int|null
      *
-     * @ORM\Column(name="LastName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="LoyaltyPoints", type="integer", nullable=true)
      */
-    private $lastname;
+    private $loyaltypoints;
 
     /**
-     * @var string|null
+     * @var \Users
      *
-     * @ORM\Column(name="Email", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="UserID", referencedColumnName="UserID")
+     * })
      */
-    private $email;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="PasswordHash", type="string", length=255, nullable=true)
-     */
-    private $passwordhash;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="Address", type="string", length=255, nullable=true)
-     */
-    private $address;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="City", type="string", length=255, nullable=true)
-     */
-    private $city;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="PostalCode", type="string", length=10, nullable=true)
-     */
-    private $postalcode;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="Country", type="string", length=255, nullable=true)
-     */
-    private $country;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="Phone", type="string", length=20, nullable=true)
-     */
-    private $phone;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="DateRegistered", type="datetime", nullable=true)
-     */
-    private $dateregistered;
+    private $userid;
 
     public function getCustomerid(): ?int
     {
         return $this->customerid;
     }
 
-    public function getFirstname(): ?string
+    public function getPreferredpaymentmethod(): ?string
     {
-        return $this->firstname;
+        return $this->preferredpaymentmethod;
     }
 
-    public function setFirstname(?string $firstname): static
+    public function setPreferredpaymentmethod(?string $preferredpaymentmethod): static
     {
-        $this->firstname = $firstname;
+        $this->preferredpaymentmethod = $preferredpaymentmethod;
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function getLoyaltypoints(): ?int
     {
-        return $this->lastname;
+        return $this->loyaltypoints;
     }
 
-    public function setLastname(?string $lastname): static
+    public function setLoyaltypoints(?int $loyaltypoints): static
     {
-        $this->lastname = $lastname;
+        $this->loyaltypoints = $loyaltypoints;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getUserid(): ?Users
     {
-        return $this->email;
+        return $this->userid;
     }
 
-    public function setEmail(?string $email): static
+    public function setUserid(?Users $userid): static
     {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPasswordhash(): ?string
-    {
-        return $this->passwordhash;
-    }
-
-    public function setPasswordhash(?string $passwordhash): static
-    {
-        $this->passwordhash = $passwordhash;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?string $address): static
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    public function setCity(?string $city): static
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    public function getPostalcode(): ?string
-    {
-        return $this->postalcode;
-    }
-
-    public function setPostalcode(?string $postalcode): static
-    {
-        $this->postalcode = $postalcode;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): static
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(?string $phone): static
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getDateregistered(): ?\DateTimeInterface
-    {
-        return $this->dateregistered;
-    }
-
-    public function setDateregistered(?\DateTimeInterface $dateregistered): static
-    {
-        $this->dateregistered = $dateregistered;
+        $this->userid = $userid;
 
         return $this;
     }
